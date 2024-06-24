@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Send bulk emails with tracking links'
 
     def handle(self, *args, **kwargs):
-        smtp_server = config
+        smtp_server = 'smtp.zoho.com'
         port = 587
         login = config('EMAIL_HOST_USER')
         password = config('EMAIL_HOST_PASSWORD')
@@ -26,7 +26,7 @@ class Command(BaseCommand):
             msg['To'] = recipient
             msg['Subject'] = subject
             
-            link = f"http://yourserver.com/track?email={recipient}"
+            link = f"http://127.0.0.1:8000/track?email={recipient}"
             html_body = f"{body} <a href='{link}'>Click here</a>"
             msg.attach(MIMEText(html_body, 'html'))
             

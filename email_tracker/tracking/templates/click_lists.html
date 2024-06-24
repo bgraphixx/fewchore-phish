@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Click Tracking Results</title>
+</head>
+<body>
+    <h1>Click Tracking Results</h1>
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for click in clicks %}
+        <tr>
+            <td>{{ click.email }}</td>
+            <td>{{ click.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
