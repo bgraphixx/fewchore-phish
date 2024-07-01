@@ -1,2 +1,4 @@
 env
 .ENV
+db.sqlite3
+*.pyc
