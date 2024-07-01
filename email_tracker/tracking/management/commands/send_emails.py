@@ -34,8 +34,8 @@ class Command(BaseCommand):
                 msg['To'] = recipient
                 msg['Subject'] = subject
 
-                domain = settings.ALLOWED_HOSTS
-                link = f"http:///{domain}//appraise?email={recipient}"
+                domain = settings.ALLOWED_HOSTS[0]
+                link = f"http://{domain}/appraise?email={recipient}"
                 html_body = f"{body} <a href='{link}'>Click here to visit the HR Process Automation</a>"
                 msg.attach(MIMEText(html_body, 'html'))
                 
