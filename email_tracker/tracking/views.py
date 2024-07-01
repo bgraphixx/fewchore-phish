@@ -89,8 +89,8 @@ def track_click(request):
     email = request.GET.get('email')
     if email:
         Click.objects.create(email=email)
-        return HttpResponse("Thank you for clicking! You have been phished")
-    return HttpResponse("Invalid request")
+        return render(request, 'track_click.html')
+    return render(request, 'track_click.html')
 
 
 @login_required

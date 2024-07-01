@@ -28,7 +28,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [config('ALLOWED_HOSTS', default='localhost')]
 
-# ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 # Application definition
 
