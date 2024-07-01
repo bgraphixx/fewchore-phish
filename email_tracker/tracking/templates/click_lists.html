@@ -2,20 +2,49 @@
 <html>
 <head>
     <title>Click Tracking Results</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa;
+        }
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Click Tracking Results</h1>
-    <table>
-        <tr>
-            <th>Email</th>
-            <th>Timestamp</th>
-        </tr>
-        {% for click in clicks %}
-        <tr>
-            <td>{{ click.email }}</td>
-            <td>{{ click.timestamp }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Click Tracking Results</h1>
+                <a href="{% url 'logout' %}" class="btn btn-danger logout-button">Logout</a>
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for click in clicks %}
+                        <tr>
+                            <td>{{ click.email }}</td>
+                            <td>{{ click.timestamp }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

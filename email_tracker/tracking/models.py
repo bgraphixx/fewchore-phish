@@ -1,4 +1,13 @@
 from django.db import models
+from ckeditor.fields import RichTextField
+
+class EmailMessage(models.Model):
+    subject = models.CharField(max_length=100)
+    message = RichTextField()
+
+    def __str__(self):
+        return self.subject
+
 
 # Create your models here.
 class Click(models.Model):
@@ -7,3 +16,6 @@ class Click(models.Model):
 
     def __str__(self):
         return self.email
+      
+class Recipient(models.Model):
+    email = models.EmailField(unique=True)
