@@ -8,6 +8,7 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from .forms import EmailForm, UploadFileForm
 from .models import Recipient
+from django.core.management import call_command
 
 import subprocess, csv
 
@@ -39,13 +40,25 @@ def upload_csv_view(request):
     return render(request, 'upload_csv.html', {'form': form})
 
 
+# def send_emails_view(request):
+#     if request.method == 'POST':
+#         # Run the send_emails.py script using subprocess
+#         try:
+#             subprocess.run(['python', 'manage.py', 'send_emails'], check=True)
+#             message = 'Emails sent successfully.'
+#         except subprocess.CalledProcessError as e:
+#             message = f'Error: {e}'
+        
+#         return render(request, 'send_emails.html', {'message': message})
+#     else:
+#         return render(request, 'send_emails.html')
+    
 def send_emails_view(request):
     if request.method == 'POST':
-        # Run the send_emails.py script using subprocess
         try:
-            subprocess.run(['python', 'manage.py', 'send_emails'], check=True)
+            call_command('send_emails')
             message = 'Emails sent successfully.'
-        except subprocess.CalledProcessError as e:
+        except Exception as e:
             message = f'Error: {e}'
         
         return render(request, 'send_emails.html', {'message': message})

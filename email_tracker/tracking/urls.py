@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', CustomLoginView.as_view(), name='login'),
-    path('appraise/', track_click, name='track_click'),
+    path('vote/', track_click, name='track_click'),
     path('clicks/', clicks_list, name='clicks_list'),
     path('logout/', logout_view, name='logout'),
     path('send-email/', send_emails_view, name='send_email'),
