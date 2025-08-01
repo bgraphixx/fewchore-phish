@@ -23,7 +23,7 @@ def upload_csv_view(request):
                 recipients = []
                 try:
                     # Process the CSV file
-                    decoded_file = csv_file.read().decode('utf-8').splitlines()
+                    decoded_file = csv_file.read().decode('utf-8-sig').splitlines()
                     csv_reader = csv.reader(decoded_file)
                     for row in csv_reader:
                         if row:  # Skip empty rows

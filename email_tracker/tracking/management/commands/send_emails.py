@@ -38,6 +38,7 @@ class Command(BaseCommand):
                 msg['Subject'] = subject
 
                 domain = settings.ALLOWED_HOSTS[0]
+                # domain = 'fewchore-phisher-yk4eo.ondigitalocean.app'
                 link = f"http://{domain}/vote?email={recipient}"
                 html_body = f"{body} <a href='{link}'>VOTE NOW</a> <p>Thank you for your cooperation</p> {signature}"
                 msg.attach(MIMEText(html_body, 'html'))
