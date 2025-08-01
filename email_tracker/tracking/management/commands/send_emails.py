@@ -1,5 +1,6 @@
 # tracking/management/commands/send_emails.py
 import smtplib
+import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from django.core.management.base import BaseCommand
@@ -44,6 +45,8 @@ class Command(BaseCommand):
                 
                 
                 server.sendmail(login, recipient, msg.as_string())
+                time.sleep(2)
+                print(f"Email sent successfully to {recipient}")
             
             server.quit()
             self.stdout.write(self.style.SUCCESS('Successfully sent emails'))
