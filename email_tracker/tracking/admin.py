@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Click, EmailMessage, Recipient
+from .models import Click, EmailMessage, Recipient, SignMessage
 # Register your models here.
 @admin.register(Click)
 class ClickAdmin(admin.ModelAdmin):
@@ -7,6 +7,10 @@ class ClickAdmin(admin.ModelAdmin):
 
 @admin.register(EmailMessage)
 class EmailMessageAdmin(admin.ModelAdmin):
+    list_display = ('subject', 'message')
+
+@admin.register(SignMessage)
+class SignMessageAdmin(admin.ModelAdmin):
     list_display = ('subject', 'message')
 
 @admin.register(Recipient)

@@ -7,6 +7,13 @@ class EmailMessage(models.Model):
 
     def __str__(self):
         return self.subject
+    
+class SignMessage(models.Model):
+    subject = models.CharField(max_length=100)
+    message = RichTextField()
+
+    def __str__(self):
+        return self.subject
 
 
 # Create your models here.

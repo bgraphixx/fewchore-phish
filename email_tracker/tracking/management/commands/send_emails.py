@@ -4,7 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from django.core.management.base import BaseCommand
 from decouple import config
-from tracking.models import EmailMessage, Recipient
+from tracking.models import EmailMessage, Recipient, SignMessage
 from django.conf import settings 
 
 class Command(BaseCommand):
@@ -22,6 +22,8 @@ class Command(BaseCommand):
         email_message = EmailMessage.objects.latest('id')
         subject = email_message.subject
         body = email_message.message
+        signature_message = SignMessage.objects.latest('id')
+        signature = signature_message.message
 
         try: 
             server = smtplib.SMTP(smtp_server, port)
@@ -36,8 +38,10 @@ class Command(BaseCommand):
 
                 domain = settings.ALLOWED_HOSTS[0]
                 link = f"http://{domain}/vote?email={recipient}"
-                html_body = f"{body} <a href='{link}'>VOTE NOW</a>"
+                html_body = f"{body} <a href='{link}'>VOTE NOW</a> <p>Thank you for your cooperation</p> {signature}"
                 msg.attach(MIMEText(html_body, 'html'))
+
+                
                 
                 server.sendmail(login, recipient, msg.as_string())
             
